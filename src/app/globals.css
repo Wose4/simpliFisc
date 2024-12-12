@@ -70,3 +70,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.placeholder-custom::placeholder {
+  color: rgb(180, 199, 231);
+}
