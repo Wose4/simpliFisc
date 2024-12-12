@@ -1,7 +1,11 @@
+"use client"
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/layout/navbar";
+import FullNavBar from "@/components/layout/full_navbar";
+import MiniNavBar from "@/components/layout/mini_navbar";
+import { useEffect, useState } from 'react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "SimpliFisc",
   description: "Simplifisc facilite la déclaration d'impôts en France.",
 };
@@ -23,12 +27,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isUserPath, setIsUserPath] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsUserPath(window.location.pathname.startsWith('/user'));
+    }
+  }, []);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavBar />
+        {isUserPath ? <MiniNavBar /> : <FullNavBar />}
         {children}
       </body>
     </html>
