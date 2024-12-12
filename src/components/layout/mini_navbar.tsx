@@ -9,7 +9,7 @@ const profileMenuItems = [
     { href: "/mon-espace", label: "Mon espace" },
 ];
 
-const NavBar = () => {
+const MiniNavBar = () => {
 
     return (
         <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-md shadow-2xl rounded-full px-6 py-3 w-[90vw] flex items-center justify-between">
@@ -35,4 +35,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default MiniNavBar;

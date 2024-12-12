@@ -17,7 +17,7 @@ const profileMenuItems = [
     { href: "/mon-espace", label: "Mon espace", auth: true },
 ];
 
-const NavBar = () => {
+const FullNavBar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     return (
@@ -52,4 +52,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default FullNavBar;
