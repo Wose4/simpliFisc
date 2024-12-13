@@ -28,6 +28,9 @@ const Questionnaire: React.FC = () => {
       subCategories: [
         { label: "Collaborated on projects", href: "#" },
         { label: "Learned version control", href: "#" },
+        { label: "Learned version control", href: "#" },
+        { label: "Learned version control", href: "#" },
+        { label: "Learned version control", href: "#" },
       ],
     },
     {
@@ -54,7 +57,7 @@ const Questionnaire: React.FC = () => {
 
   return (
     <div className="flex">
-      <div className="w-1/4 flex justify-center bg-blue-100 rounded-lg">
+      <div className="w-1/4 flex justify-center items-center">
         <ThemedTimeline title="Timeline" options={timelineOptions} />
       </div>
       <div className="w-3/4 flex justify-center items-center h-screen">
