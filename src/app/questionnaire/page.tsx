@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ThemedTitle from "@/components/ui/questionnaire-components/themedTitle";
 import ThemedInput from "@/components/ui/questionnaire-components/themedInput";
 import ThemedTimeline from "@/components/ui/questionnaire-components/themedTimeline";
+import { timelineOptions } from "@/components/ui/questionnaire-components/questionnaire-constants";
 
 const Questionnaire: React.FC = () => {
   const [answer, setAnswer] = useState("");
@@ -15,14 +16,6 @@ const Questionnaire: React.FC = () => {
     { label: "What’s your last name?", value: answer, setValue: setAnswer, id: "last-name", placeholder: "Enter your last name" },
     { label: "Where do you live?", value: answer, setValue: setAnswer, id: "location", placeholder: "Enter your location" },
     // Add more questions as needed
-  ];
-
-  const timelineOptions = [
-    { label: "Started Learning React", subCategories: [{ label: "Watched tutorials", href: "#" }, { label: "Built a basic app", href: "#" }] },
-    { label: "Built My First App", subCategories: [{ label: "Setup project", href: "#" }, { label: "Added functionality", href: "#" }] },
-    { label: "Joined a Development Team", subCategories: [{ label: "Collaborated on projects", href: "#" }, { label: "Learned version control", href: "#" }] },
-    { label: "Launched My Portfolio", subCategories: [{ label: "Created portfolio site", href: "#" }, { label: "Deployed using Netlify", href: "#" }] },
-    { label: "Started Freelancing", subCategories: [{ label: "Built websites for clients", href: "#" }, { label: "Developed apps", href: "#" }] },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {

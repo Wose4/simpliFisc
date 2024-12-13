@@ -1,4 +1,4 @@
-import './questionnaire.css'
+import "./questionnaire.css";
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 
@@ -28,28 +28,30 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options }) => {
       <div className="text-2xl font-semibold mb-6">{title}</div>
 
       {/* Timeline Steps */}
-      <div className="relative max-h-[500px] overflow-y-auto themed-timeline-scrollbar"> {/* Set a fixed max-height for the whole timeline */}
+      <div className="relative max-h-[500px] overflow-y-auto themed-timeline-scrollbar">
         {options.map((option, index) => (
           <div key={index} className="flex flex-col mb-6 relative">
             {/* Content - Timeline Step */}
-            <div className="ml-12 flex flex-col">
-              <div className="flex items-center">
-                <button
-                  className="flex items-center text-lg font-medium text-blue-600 hover:underline"
-                  onClick={() => handleToggle(index)}
-                >
+            <div className="flex flex-col">
+              <button
+                className="flex justify-between items-center w-full text-left p-2 rounded-lg hover:bg-blue-100"
+                onClick={() => handleToggle(index)}
+              >
+                {/* Label on the left */}
+                <span className="text-lg font-medium text-blue-600">
                   {option.label}
-                  <FaAngleDown
-                    className={`ml-2 transition-transform duration-300 ease-in-out transform ${
-                      openIndices.includes(index) ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-              </div>
+                </span>
+                {/* Arrow on the right */}
+                <FaAngleDown
+                  className={`transition-transform duration-300 ease-in-out transform text-blue-600 ${
+                    openIndices.includes(index) ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
 
               {/* Subcategories - Hidden/Visible based on toggle state */}
               <div
-                className={`transition-all duration-300 ease-in-out ml-6 mt-2 overflow-hidden ${
+                className={`themed-timeline-scrollbar-sub transition-all duration-300 ease-in-out ml-6 mt-2 overflow-hidden ${
                   openIndices.includes(index)
                     ? "max-h-[200px] opacity-100 overflow-y-auto" // Allow scroll if content exceeds max height
                     : "max-h-0 opacity-0"
@@ -60,7 +62,7 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options }) => {
                     <div key={subIndex} className="flex flex-col mb-2">
                       <a
                         href={subCategory.href || "#"}
-                        className="text-sm text-gray-700 hover:underline"
+                        className="text-sm text-blue-500"
                       >
                         {subCategory.label}
                       </a>
