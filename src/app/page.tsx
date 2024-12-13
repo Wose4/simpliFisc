@@ -8,7 +8,7 @@ import { TestimonialsSection } from "@/components/homepage/TestimonialsSection";
 export default function Home() {
   return (
     <div>
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-screen">
         <HeroSection />
         <CompareDemo />
         <FAQSection />
