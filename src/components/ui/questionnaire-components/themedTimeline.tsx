@@ -7,11 +7,12 @@ interface ThemedTimelineProps {
   options: {
     label: string;
     href?: string;
-    subCategories?: { label: string; href?: string }[]; // Added subCategories for tree structure
+    subCategories?: { label: string; ids: string[] }[];
   }[];
+  onSendData: (arg0: string[]) => void;
 }
 
-const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options }) => {
+const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options, onSendData }) => {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
 
   const handleToggle = (index: number) => {
@@ -20,6 +21,11 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options }) => {
     } else {
       setOpenIndices([...openIndices, index]); // Open it if it's closed
     }
+  };
+
+  // Function to send data to parent, sending which questions we want to acces.
+  const sendQuestionIdsToParent = (idList: string[]) => {
+    onSendData(idList);
   };
 
   return (
@@ -59,13 +65,13 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options }) => {
               >
                 {option.subCategories &&
                   option.subCategories.map((subCategory, subIndex) => (
-                    <div key={subIndex} className="flex flex-col mb-2">
-                      <a
-                        href={subCategory.href || "#"}
-                        className="text-sm text-blue-500"
+                    <div key={subIndex} className="mb-2">
+                      <button
+                        onClick={() => sendQuestionIdsToParent(subCategory.ids)}
+                        className="text-left text-sm text-blue-500"
                       >
                         {subCategory.label}
-                      </a>
+                      </button>
                     </div>
                   ))}
               </div>
