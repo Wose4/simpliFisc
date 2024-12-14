@@ -4,19 +4,14 @@ import React, { useState } from "react";
 import ThemedTitle from "@/components/ui/questionnaire-components/themedTitle";
 import ThemedInput from "@/components/ui/questionnaire-components/themedInput";
 import ThemedTimeline from "@/components/ui/questionnaire-components/themedTimeline";
-import { timelineOptions } from "@/components/ui/questionnaire-components/questionnaire-constants";
+import {
+  timelineOptions,
+  questions,
+} from "@/components/ui/questionnaire-components/questionnaire-constants";
 
 const Questionnaire: React.FC = () => {
   const [answer, setAnswer] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
-  // Questions array
-  const questions = [
-    { label: "What’s your first name?", value: answer, setValue: setAnswer, id: "first-name", placeholder: "Enter your first name" },
-    { label: "What’s your last name?", value: answer, setValue: setAnswer, id: "last-name", placeholder: "Enter your last name" },
-    { label: "Where do you live?", value: answer, setValue: setAnswer, id: "location", placeholder: "Enter your location" },
-    // Add more questions as needed
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,10 +29,23 @@ const Questionnaire: React.FC = () => {
     }
   };
 
+  const handleChildData = (data: string[]) => {
+    console.log(data);
+    if (data.length === 1) {
+      const index = questions.findIndex((question) => question.id === data[0]);
+      console.log(index);
+      setCurrentQuestion(index);
+    }
+  };
+
   return (
     <div className="flex">
       <div className="w-1/4 flex justify-center items-center">
-        <ThemedTimeline title="Timeline" options={timelineOptions} />
+        <ThemedTimeline
+          title="Timeline"
+          options={timelineOptions}
+          onSendData={handleChildData}
+        />
       </div>
       <div className="w-3/4 flex justify-center items-center h-screen">
         <form
@@ -52,8 +60,8 @@ const Questionnaire: React.FC = () => {
             <ThemedInput
               label={questions[currentQuestion].label}
               id={questions[currentQuestion].id}
-              value={questions[currentQuestion].value}
-              onChange={(e) => questions[currentQuestion].setValue(e.target.value)}
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
               placeholder={questions[currentQuestion].placeholder}
               required
               size="lg"
