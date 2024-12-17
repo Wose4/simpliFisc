@@ -1,0 +1,38 @@
+.themed-timeline-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  display: none;
+  /* TODO: décider si on laisse scrollbar visible ou pas  */
+}
+
+.themed-timeline-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track (background) */
+  border-radius: 10px; /* Round the corners of the track */
+}
+
+.themed-timeline-scrollbar::-webkit-scrollbar-thumb {
+  background: #cfcfcf; /* Color of the thumb (scroll handle) */
+  border-radius: 10px; /* Round the corners of the thumb */
+}
+
+.themed-timeline-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5; /* Darker color on hover */
+}
+
+
+.themed-timeline-scrollbar-sub::-webkit-scrollbar {
+  width: 7px;
+}
+
+.themed-timeline-scrollbar-sub::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track (background) */
+  border-radius: 10px; /* Round the corners of the track */
+}
+
+.themed-timeline-scrollbar-sub::-webkit-scrollbar-thumb {
+  background: #cfcfcf; /* Color of the thumb (scroll handle) */
+  border-radius: 10px; /* Round the corners of the thumb */
+}
+
+.themed-timeline-scrollbar-sub::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5; /* Darker color on hover */
+}
