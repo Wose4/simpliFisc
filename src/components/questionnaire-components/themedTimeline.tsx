@@ -1,6 +1,6 @@
 import "./questionnaire.css";
 import React, { useState } from "react";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaCheck } from "react-icons/fa";
 
 interface ThemedTimelineProps {
   title: string;
@@ -10,9 +10,15 @@ interface ThemedTimelineProps {
     subCategories?: { label: string; ids: string[] }[];
   }[];
   onSendData: (arg0: string[]) => void;
+  answers: { [id: string]: string };
 }
 
-const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options, onSendData }) => {
+const ThemedTimeline: React.FC<ThemedTimelineProps> = ({
+  title,
+  options,
+  onSendData,
+  answers,
+}) => {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
 
   const handleToggle = (index: number) => {
@@ -44,7 +50,7 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options, onSendD
                 onClick={() => handleToggle(index)}
               >
                 {/* Label on the left */}
-                <span className="text-lg font-medium text-blue-600">
+                <span className="text-lg font-medium text-blue-600 mr-1">
                   {option.label}
                 </span>
                 {/* Arrow on the right */}
@@ -65,13 +71,17 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({ title, options, onSendD
               >
                 {option.subCategories &&
                   option.subCategories.map((subCategory, subIndex) => (
-                    <div key={subIndex} className="mb-2">
+                    <div
+                      key={subIndex}
+                      className="mb-2 flex items-center justify-between max-w-[90%]"
+                    >
                       <button
                         onClick={() => sendQuestionIdsToParent(subCategory.ids)}
-                        className="text-left text-sm text-blue-500"
+                        className="text-left text-sm text-blue-500 mr-1"
                       >
                         {subCategory.label}
                       </button>
+                      {subCategory.ids.every((id) => id in answers) && <FaCheck className="w-3 h-3 text-green-500 shrink-0" />}
                     </div>
                   ))}
               </div>
