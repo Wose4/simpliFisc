@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ChatPage = () => {
     const [messages, setMessages] = useState<string[]>([]);
