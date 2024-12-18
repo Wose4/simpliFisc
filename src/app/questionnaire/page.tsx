@@ -1,6 +1,6 @@
 "use client"; // Ensures the component is rendered on the client-side
 
-import React, { useState } from "react";
+import { useState } from "react";
 import ThemedTitle from "@/components/questionnaire-components/themedTitle";
 import ThemedInput from "@/components/questionnaire-components/themedInput";
 import ThemedTimeline from "@/components/questionnaire-components/themedTimeline";

@@ -1,4 +1,3 @@
-import React from "react";
 import { Compare } from "@/components/ui/compare";
 
 export function CompareDemo() {
