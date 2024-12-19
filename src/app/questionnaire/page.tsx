@@ -1,13 +1,13 @@
 "use client"; // Ensures the component is rendered on the client-side
 
 import { useState } from "react";
-import ThemedTitle from "@/components/questionnaire-components/themedTitle";
-import ThemedInput from "@/components/questionnaire-components/themedInput";
-import ThemedTimeline from "@/components/questionnaire-components/themedTimeline";
+import ThemedTitle from "@/components/ui/themedTitle";
+import ThemedInput from "@/features/questionnaire-components/themedInput";
+import ThemedTimeline from "@/features/questionnaire-components/themedTimeline";
 import {
   timelineOptions,
   questions,
-} from "@/components/questionnaire-components/questionnaire-constants";
+} from "@/features/questionnaire-components/questionnaire-constants";
 
 const Questionnaire: React.FC = () => {
   const [answer, setAnswer] = useState("");
