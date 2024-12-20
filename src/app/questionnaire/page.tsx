@@ -52,7 +52,7 @@ const Questionnaire: React.FC = () => {
 
   return (
     <div className="flex">
-      <div className="w-1/4 flex justify-center items-center">
+      <div className="w-1/4 max-h-screen">
         <ThemedTimeline
           title="Timeline"
           options={timelineOptions}

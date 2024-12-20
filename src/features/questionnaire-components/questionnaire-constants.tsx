@@ -89,99 +89,99 @@ export const timelineOptions = [
 export const questions = [
   // Informations personnelles et situation de famille
   { 
-    label: "What’s your first name?",  
+    label: "Quel est votre prénom ?",  
     id: "first-name", 
-    placeholder: "Enter your first name" 
+    placeholder: "Entrez votre prénom" 
   },
   { 
-    label: "What’s your last name?",  
+    label: "Quel est votre nom de famille ?",  
     id: "last-name", 
-    placeholder: "Enter your last name" 
+    placeholder: "Entrez votre nom de famille" 
   },
   { 
-    label: "When were you born?",  
+    label: "Quelle est votre date de naissance ?",  
     id: "birth-date", 
-    placeholder: "Enter your birth date (YYYY-MM-DD)" 
+    placeholder: "Entrez votre date de naissance (AAAA-MM-JJ)" 
   },
   { 
-    label: "Where do you live?",  
+    label: "Où habitez-vous ?",  
     id: "address", 
-    placeholder: "Enter your address" 
+    placeholder: "Entrez votre adresse" 
   },
   { 
-    label: "What’s your marital status?",  
+    label: "Quel est votre statut matrimonial ?",  
     id: "marital-status", 
-    placeholder: "Enter your marital status (e.g., single, married)" 
+    placeholder: "Entrez votre statut matrimonial (ex : célibataire, marié(e))" 
   },
   { 
-    label: "How many children or dependents do you have?",  
+    label: "Combien d'enfants ou de personnes à charge avez-vous ?",  
     id: "number-of-dependents", 
-    placeholder: "Enter the number of dependents" 
+    placeholder: "Entrez le nombre de personnes à charge" 
   },
 
   // Revenus principaux
   { 
-    label: "Did you receive any salaries or pensions this year?",  
+    label: "Avez-vous perçu des salaires ou des pensions cette année ?",  
     id: "received-salaries-or-pensions", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you earn income from investments (e.g., interest, dividends)?",  
+    label: "Avez-vous perçu des revenus d'investissements (ex : intérêts, dividendes) ?",  
     id: "received-investment-income", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you earn income from rental properties?",  
+    label: "Avez-vous perçu des revenus de biens locatifs ?",  
     id: "received-property-income", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you have self-employment income (e.g., micro-entreprise, freelance)?",  
+    label: "Avez-vous des revenus d'activité indépendante (ex : micro-entreprise, freelance) ?",  
     id: "self-employment-income", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
 
   // Dépenses déductibles et charges
   { 
-    label: "Did you incur any actual expenses (e.g., transport, meals)?",  
+    label: "Avez-vous engagé des frais réels (ex : transport, repas) ?",  
     id: "incurred-actual-expenses", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you pay alimony?",  
+    label: "Avez-vous payé une pension alimentaire ?",  
     id: "paid-alimony", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you carry out renovations in a rental property?",  
+    label: "Avez-vous effectué des rénovations dans un bien locatif ?",  
     id: "rental-property-renovations", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Do you have any other specific expenses?",  
+    label: "Avez-vous d'autres dépenses spécifiques ?",  
     id: "other-specific-expenses", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
 
   // Réductions et crédits d’impôts
   { 
-    label: "Did you use any personal services (e.g., housekeeping)?",  
+    label: "Avez-vous utilisé des services à la personne (ex : ménage) ?",  
     id: "personal-services-used", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you make donations to eligible organizations?",  
+    label: "Avez-vous fait des dons à des organismes éligibles ?",  
     id: "donations-to-eligible-organizations", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Did you invest in tax-saving schemes (e.g., Pinel, Duflot)?",  
+    label: "Avez-vous investi dans des dispositifs de défiscalisation (ex : Pinel, Duflot) ?",  
     id: "invested-in-tax-schemes", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
   { 
-    label: "Do you have other tax credits (e.g., solar panels)?",  
+    label: "Avez-vous d'autres crédits d'impôt (ex : panneaux solaires) ?",  
     id: "other-tax-credits", 
-    placeholder: "Enter 'yes' or 'no'" 
+    placeholder: "Entrez 'oui' ou 'non'" 
   },
 ];

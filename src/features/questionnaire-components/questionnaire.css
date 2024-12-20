@@ -21,6 +21,7 @@
 
 .themed-timeline-scrollbar-sub::-webkit-scrollbar {
   width: 7px;
+  display: none;
 }
 
 .themed-timeline-scrollbar-sub::-webkit-scrollbar-track {
