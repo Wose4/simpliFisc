@@ -40,7 +40,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {isUserPath ? <MiniNavBar /> : <FullNavBar />}
+        {!isUserPath && <FullNavBar />}
         {children}
       </body>
     </html>

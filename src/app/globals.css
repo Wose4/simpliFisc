@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Marianne',Arial, Helvetica, sans-serif;
 }
 
 @layer base {
@@ -90,4 +90,32 @@ body {
 
 .placeholder-custom::placeholder {
   color: rgb(180, 199, 231);
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne/Marianne-Medium.woff2') format('woff2');
+  font-weight: 500; /* Medium weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne/Marianne-Bold.woff2') format('woff2');
+  font-weight: 700; /* Bold weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne/Marianne-Light.woff2') format('woff2');
+  font-weight: 300; /* Light weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne/Marianne-Regular.woff2') format('woff2');
+  font-weight: 400; /* Normal weight */
+  font-style: normal; /* Italic style */
 }

@@ -67,7 +67,7 @@ const Questionnaire: React.FC = () => {
             className="bg-white p-6 rounded-lg max-w-4xl w-full flex flex-col"
             onKeyDown={handleKeyPress} // Handle "Enter" key press
           >
-            <ThemedTitle size="lg" className="pb-10">
+            <ThemedTitle size="lg" className="pb-10 font-marianne font-bold">
               {questions[currentQuestion].label}
             </ThemedTitle>
             <div className="mb-11">
