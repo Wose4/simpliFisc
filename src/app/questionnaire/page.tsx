@@ -12,11 +12,10 @@ import {
 const Questionnaire: React.FC = () => {
   const [answer, setAnswer] = useState("");
   const [lastQuestion, setLastQuestion] = useState(false);
-  // const [answers, setAnswers] = useState<{ id: string; answer: string }[]>([]);
   const [answers, setAnswers] = useState<{ [id: string]: string }>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleNextQuestion = (e: React.FormEvent | React.KeyboardEvent) => {
     e.preventDefault();
     console.log(answers);
     if (currentQuestion < questions.length - 1) {
@@ -30,28 +29,15 @@ const Questionnaire: React.FC = () => {
       console.log("last question");
       console.log(answers);
       setLastQuestion(true);
-      // handleSubmit(e); // Submit the form if it's the last question
+      // handleNextQuestion(e, isKeyPress); // Submit the form if it's the last question
     }
   };
 
-  // Move to the next question when "Enter" is pressed
+  const handleSubmit = (e: React.FormEvent) => handleNextQuestion(e);
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      e.preventDefault();
-      console.log(answers);
-      if (currentQuestion < questions.length - 1) {
-        setAnswers((prevAnswers) => ({
-          ...prevAnswers,
-          [questions[currentQuestion].id]: answer, // Add or update the entry with key "newId"
-        }));
-        setAnswer("");
-        setCurrentQuestion(currentQuestion + 1);
-      } else {
-        console.log("last question");
-        console.log(answers);
-        setLastQuestion(true);
-        // handleSubmit(e); // Submit the form if it's the last question
-      }
+      handleNextQuestion(e);
     }
   };
 
