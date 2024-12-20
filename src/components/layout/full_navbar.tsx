@@ -41,7 +41,7 @@ const FullNavBar = () => {
                             </Link>
                         )
                 )}
-                <Link href="/questionnaire">
+                <Link href="/user/questionnaire">
                     <Button className="">Simuler</Button>
                 </Link>
                 <Link href="/chat">

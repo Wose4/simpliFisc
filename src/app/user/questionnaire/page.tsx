@@ -29,12 +29,12 @@ const Questionnaire: React.FC = () => {
       console.log("last question");
       console.log(answers);
       setLastQuestion(true);
+      submitData();
       // handleNextQuestion(e, isKeyPress); // Submit the form if it's the last question
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => handleNextQuestion(e);
-
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleNextQuestion(e);
@@ -48,6 +48,21 @@ const Questionnaire: React.FC = () => {
       console.log(index);
       setCurrentQuestion(index);
     }
+  };
+
+  const submitData = async () => {
+    console.log("Submitting data...");
+
+    const response = await fetch("/api/submitData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ answers }),
+    });
+
+    const result = await response.json();
+    console.log(result.message);
   };
 
   return (
