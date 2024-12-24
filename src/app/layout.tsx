@@ -1,11 +1,11 @@
 "use client"
 
+import "./globals.css";
+import { usePathname } from "next/navigation";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import FullNavBar from "@/components/layout/full_navbar";
 import MiniNavBar from "@/components/layout/mini_navbar";
-import { useEffect, useState } from 'react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +27,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isUserPath, setIsUserPath] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsUserPath(window.location.pathname.startsWith('/user'));
-    }
-  }, []);
+  const pathname = usePathname(); // Get the current path
+  const isUserPath = pathname.startsWith("/user");
 
   return (
     <html lang="en">

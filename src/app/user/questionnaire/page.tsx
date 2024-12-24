@@ -26,11 +26,8 @@ const Questionnaire: React.FC = () => {
       setAnswer("");
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      console.log("last question");
-      console.log(answers);
       setLastQuestion(true);
       submitData();
-      // handleNextQuestion(e, isKeyPress); // Submit the form if it's the last question
     }
   };
 
@@ -42,10 +39,8 @@ const Questionnaire: React.FC = () => {
   };
 
   const handleChildData = (data: string[]) => {
-    console.log(data);
     if (data.length === 1) {
       const index = questions.findIndex((question) => question.id === data[0]);
-      console.log(index);
       setCurrentQuestion(index);
     }
   };
@@ -100,7 +95,7 @@ const Questionnaire: React.FC = () => {
             <div className="mt-auto flex justify-end w-full">
               <button
                 type="submit"
-                className="w-1/6 flex justify-center items-center bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-1/6 flex justify-center items-center bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 OK{" "}
                 <span className="ml-2 text-sm text-gray-300">
