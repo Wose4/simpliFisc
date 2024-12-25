@@ -36,7 +36,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {!isUserPath && <FullNavBar />}
+        {!isUserPath ? <FullNavBar /> : <MiniNavBar />}
         {children}
       </body>
     </html>
