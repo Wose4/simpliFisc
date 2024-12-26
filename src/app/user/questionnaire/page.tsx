@@ -14,20 +14,28 @@ const Questionnaire: React.FC = () => {
   const [lastQuestion, setLastQuestion] = useState(false);
   const [answers, setAnswers] = useState<{ [id: string]: string }>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [error, setError] = useState("");
 
   const handleNextQuestion = (e: React.FormEvent | React.KeyboardEvent) => {
     e.preventDefault();
-    console.log(answers);
+
+    const storedAnswer = answers[questions[currentQuestion].id];
+    const currentAnswer = answer?.trim() || storedAnswer?.trim();
+    if (!currentAnswer) {
+      setError("This field cannot be empty.");
+      return;
+    }
+    setError(""); 
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questions[currentQuestion].id]: currentAnswer,
+    }));
     if (currentQuestion < questions.length - 1) {
-      setAnswers((prevAnswers) => ({
-        ...prevAnswers,
-        [questions[currentQuestion].id]: answer, // Add or update the entry with key "newId"
-      }));
       setAnswer("");
-      setCurrentQuestion(currentQuestion + 1);
+      setCurrentQuestion(currentQuestion + 1); 
     } else {
-      setLastQuestion(true);
-      submitData();
+      setLastQuestion(true); 
+      submitData(); 
     }
   };
 
@@ -39,9 +47,10 @@ const Questionnaire: React.FC = () => {
   };
 
   const handleChildData = (data: string[]) => {
-    if (data.length === 1) {
+    if (data.length > 0) {
       const index = questions.findIndex((question) => question.id === data[0]);
       setCurrentQuestion(index);
+      setError("");
     }
   };
 
@@ -79,7 +88,10 @@ const Questionnaire: React.FC = () => {
             onKeyDown={handleKeyPress} // Handle "Enter" key press
           >
             {/* counter */}
-            <span className={"text-gray-400"}> { currentQuestion + 1 } / {questions.length}</span>
+            <span className={"text-gray-400"}>
+              {" "}
+              {currentQuestion + 1} / {questions.length}
+            </span>
             <ThemedTitle size="lg" className="pb-10 font-marianne font-bold">
               {questions[currentQuestion].label}
             </ThemedTitle>
@@ -87,13 +99,16 @@ const Questionnaire: React.FC = () => {
               <ThemedInput
                 label={questions[currentQuestion].label}
                 id={questions[currentQuestion].id}
-                value={answer}
+                value={answers[questions[currentQuestion].id] || answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 placeholder={questions[currentQuestion].placeholder}
                 required
                 size="lg"
                 color="gray"
               />
+              {error && (
+                <span className="text-red-500 text-sm mt-2">{error}</span>
+              )}
             </div>
             <div className="mt-auto flex justify-end w-full">
               <button
