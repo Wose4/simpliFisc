@@ -70,6 +70,7 @@ const Questionnaire: React.FC = () => {
           answers={answers}
         />
       </div>
+      {/* container question */}
       <div className="w-3/4 flex justify-center items-center h-screen">
         {!lastQuestion ? (
           <form
@@ -77,6 +78,8 @@ const Questionnaire: React.FC = () => {
             className="bg-white p-6 rounded-lg max-w-4xl w-full flex flex-col"
             onKeyDown={handleKeyPress} // Handle "Enter" key press
           >
+            {/* counter */}
+            <span className={"text-gray-400"}> { currentQuestion + 1 } / {questions.length}</span>
             <ThemedTitle size="lg" className="pb-10 font-marianne font-bold">
               {questions[currentQuestion].label}
             </ThemedTitle>
@@ -95,7 +98,9 @@ const Questionnaire: React.FC = () => {
             <div className="mt-auto flex justify-end w-full">
               <button
                 type="submit"
-                className="w-1/6 flex justify-center items-center bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-1/6 flex justify-center items-center bg-blue-600 text-white
+                 font-medium py-3 rounded-md hover:bg-blue-700 focus:outline-none 
+                 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 OK{" "}
                 <span className="ml-2 text-sm text-gray-300">
