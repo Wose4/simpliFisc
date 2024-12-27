@@ -16,7 +16,9 @@ const Questionnaire: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [error, setError] = useState("");
 
-  const handleNextQuestion = (e: React.FormEvent | React.KeyboardEvent) => {
+  const handleNextQuestion = async (
+    e: React.FormEvent | React.KeyboardEvent
+  ) => {
     e.preventDefault();
 
     const storedAnswer = answers[questions[currentQuestion].id];
@@ -25,17 +27,24 @@ const Questionnaire: React.FC = () => {
       setError("This field cannot be empty.");
       return;
     }
-    setError(""); 
-    setAnswers((prevAnswers) => ({
-      ...prevAnswers,
+    setError("");
+    const updatedAnswers = {
+      ...answers,
       [questions[currentQuestion].id]: currentAnswer,
-    }));
+    };
+    setAnswers(updatedAnswers);
     if (currentQuestion < questions.length - 1) {
       setAnswer("");
-      setCurrentQuestion(currentQuestion + 1); 
+      setCurrentQuestion(currentQuestion + 1);
     } else {
-      setLastQuestion(true); 
-      submitData(); 
+      if (!answers || Object.keys(answers).length !== questions.length) {
+        console.warn("Not enough answers provided");
+        alert("Please provide answers for all the questions.");
+        return;
+      } else {
+        setLastQuestion(true);
+        await submitData(updatedAnswers);
+      }
     }
   };
 
@@ -51,22 +60,31 @@ const Questionnaire: React.FC = () => {
       const index = questions.findIndex((question) => question.id === data[0]);
       setCurrentQuestion(index);
       setError("");
+      setAnswer("");
     }
   };
 
-  const submitData = async () => {
+  const submitData = async (answersList: { [id: string]: string }) => {
     console.log("Submitting data...");
+    console.log("Answers:", answersList);
+    try {
+      const response = await fetch("/api/submitData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ answers: answersList }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to submit data");
+      }
 
-    const response = await fetch("/api/submitData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ answers }),
-    });
-
-    const result = await response.json();
-    console.log(result.message);
+      const result = await response.json();
+      console.log("Submission result:", result);
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
   return (
@@ -113,11 +131,11 @@ const Questionnaire: React.FC = () => {
             <div className="mt-auto flex justify-end w-full">
               <button
                 type="submit"
-                className="w-1/6 flex justify-center items-center bg-blue-600 text-white
-                 font-medium py-3 rounded-md hover:bg-blue-700 focus:outline-none 
+                className="w-1/5 flex justify-center items-center bg-blue-600 text-white
+                 font-medium py-3 px-1 rounded-md hover:bg-blue-700 focus:outline-none 
                  focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                OK{" "}
+                Save{" "}
                 <span className="ml-2 text-sm text-gray-300">
                   (press Enter ↵)
                 </span>
