@@ -78,7 +78,7 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({
                         onClick={() => sendQuestionIdsToParent(subCategory.ids)}
                         className="text-left text-sm text-blue-500 mr-1"
                       >
-                        {subCategory.label}
+                         • {subCategory.label}
                       </button>
                       {subCategory.ids.every((id) => id in answers) && <FaCheck className="w-3 h-3 text-green-500 shrink-0" />}
                     </div>
