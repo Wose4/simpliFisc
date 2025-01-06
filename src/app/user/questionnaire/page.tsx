@@ -11,10 +11,11 @@ import {
 
 const Questionnaire: React.FC = () => {
   const [answer, setAnswer] = useState("");
-  const [lastQuestion, setLastQuestion] = useState(false);
   const [answers, setAnswers] = useState<{ [id: string]: string }>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [error, setError] = useState("");
+  const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
+  const [dataSent, setDataSent] = useState(false);
 
   const handleNextQuestion = async (
     e: React.FormEvent | React.KeyboardEvent
@@ -33,25 +34,20 @@ const Questionnaire: React.FC = () => {
       [questions[currentQuestion].id]: currentAnswer,
     };
     setAnswers(updatedAnswers);
+    if (Object.keys(answers).length === questions.length) {
+      setAllQuestionsAnswered(true);
+    }
     if (currentQuestion < questions.length - 1) {
       setAnswer("");
       setCurrentQuestion(currentQuestion + 1);
-    } else {
-      if (!answers || Object.keys(answers).length !== questions.length) {
-        console.warn("Not enough answers provided");
-        alert("Please provide answers for all the questions.");
-        return;
-      } else {
-        setLastQuestion(true);
-        await submitData(updatedAnswers);
-      }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => handleNextQuestion(e);
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleNextQuestion(e);
+      if (!allQuestionsAnswered) {
+        handleNextQuestion(e);
+      }
     }
   };
 
@@ -64,16 +60,16 @@ const Questionnaire: React.FC = () => {
     }
   };
 
-  const submitData = async (answersList: { [id: string]: string }) => {
+  const seeData = async () => {
     console.log("Submitting data...");
-    console.log("Answers:", answersList);
+    setDataSent(true);
     try {
       const response = await fetch("/api/submitData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ answers: answersList }),
+        body: JSON.stringify({ answers: answers }),
       });
       if (!response.ok) {
         const errorData = await response.json();
@@ -87,6 +83,18 @@ const Questionnaire: React.FC = () => {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAllQuestionsAnswered(false);
+    const updatedValue = e.target.value;
+    const currentId = questions[currentQuestion].id;
+    // Update the individual answer in `answers`
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [currentId]: updatedValue, // Update the current question's answer
+    }));
+    // Optionally update the `answer` state if needed for some local behavior
+    setAnswer(updatedValue);
+  };
   return (
     <div className="flex">
       <div className="w-1/4 max-h-screen">
@@ -99,9 +107,9 @@ const Questionnaire: React.FC = () => {
       </div>
       {/* container question */}
       <div className="w-3/4 flex justify-center items-center h-screen">
-        {!lastQuestion ? (
+        {!dataSent ? (
           <form
-            onSubmit={handleSubmit}
+            action={seeData}
             className="bg-white p-6 rounded-lg max-w-4xl w-full flex flex-col"
             onKeyDown={handleKeyPress} // Handle "Enter" key press
           >
@@ -117,8 +125,8 @@ const Questionnaire: React.FC = () => {
               <ThemedInput
                 label={questions[currentQuestion].label}
                 id={questions[currentQuestion].id}
-                value={answers[questions[currentQuestion].id] || answer}
-                onChange={(e) => setAnswer(e.target.value)}
+                value={answers[questions[currentQuestion].id] || ""}
+                onChange={handleInputChange}
                 placeholder={questions[currentQuestion].placeholder}
                 required
                 size="lg"
@@ -129,17 +137,29 @@ const Questionnaire: React.FC = () => {
               )}
             </div>
             <div className="mt-auto flex justify-end w-full">
-              <button
-                type="submit"
-                className="w-1/5 flex justify-center items-center bg-blue-600 text-white
+              {allQuestionsAnswered ? (
+                <button
+                  type="submit"
+                  className="w-1/5 flex justify-center items-center bg-white text-blue-600 border-2 border-blue-600
+                 font-medium py-3 px-1 rounded-md hover:bg-blue-600 hover:text-white focus:outline-none 
+                 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-1000"
+                >
+                  Submit
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleNextQuestion}
+                  className="w-1/5 flex justify-center items-center bg-blue-600 text-white
                  font-medium py-3 px-1 rounded-md hover:bg-blue-700 focus:outline-none 
-                 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                Save{" "}
-                <span className="ml-2 text-sm text-gray-300">
-                  (press Enter ↵)
-                </span>
-              </button>
+                 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-1000"
+                >
+                  Save{" "}
+                  <span className="ml-2 text-sm text-gray-300">
+                    (press Enter ↵)
+                  </span>
+                </button>
+              )}
             </div>
           </form>
         ) : (
