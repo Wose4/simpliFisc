@@ -33,21 +33,19 @@ export const timelineOptions = [
     label: "Revenus principaux",
     subCategories: [
       {
-        label: "Avez-vous perçu des salaires ou retraites cette année ?",
+        label: "Perception de salaires ou retraites cette année",
         ids: ["received-salaries-or-pensions"],
       },
       {
-        label:
-          "Avez-vous perçu des revenus de placement (intérêts, dividendes) ?",
+        label: "Perception de revenus de placement",
         ids: ["received-investment-income"],
       },
       {
-        label: "Avez-vous perçu des revenus fonciers (loyers) ?",
+        label: "Perception de revenus fonciers",
         ids: ["received-property-income"],
       },
       {
-        label:
-          "Avez-vous des revenus d’activité indépendante (micro-entreprise, profession libérale) ?",
+        label: "Revenus d’activité indépendante",
         ids: ["self-employment-income"],
       },
     ],
@@ -56,19 +54,19 @@ export const timelineOptions = [
     label: "Dépenses déductibles et charges",
     subCategories: [
       {
-        label: "Avez-vous engagé des frais réels (transport, repas) ?",
+        label: "Engagement de frais réels",
         ids: ["incurred-actual-expenses"],
       },
       {
-        label: "Avez-vous versé des pensions alimentaires ?",
+        label: "Versement de pensions alimentaires",
         ids: ["paid-alimony"],
       },
       {
-        label: "Avez-vous effectué des travaux dans un logement locatif ?",
+        label: "Travaux effectués dans un logement locatif",
         ids: ["rental-property-renovations"],
       },
       {
-        label: "Autres charges spécifiques ?",
+        label: "Autres charges spécifiques",
         ids: ["other-specific-expenses"],
       },
     ],
@@ -77,20 +75,19 @@ export const timelineOptions = [
     label: "Réductions et crédits d’impôts",
     subCategories: [
       {
-        label: "Avez-vous eu recours à des services à la personne ?",
+        label: "Recours de services à la personne",
         ids: ["personal-services-used"],
       },
       {
-        label: "Avez-vous réalisé des dons à des associations éligibles ?",
+        label: "Dons à des associations éligibles",
         ids: ["donations-to-eligible-organizations"],
       },
       {
-        label:
-          "Avez-vous investi dans des dispositifs fiscaux (Pinel, Duflot) ?",
+        label: "Investissement dans des dispositifs fiscaux",
         ids: ["invested-in-tax-schemes"],
       },
       {
-        label: "Autres crédits d’impôts (ex : panneaux solaires) ?",
+        label: "Autres crédits d’impôts",
         ids: ["other-tax-credits"],
       },
     ],
