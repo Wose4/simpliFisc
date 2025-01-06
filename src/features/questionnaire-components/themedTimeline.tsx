@@ -46,7 +46,7 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({
         <div className="text-2xl font-semibold">{title}</div>
         <button
           type="button"
-          className="button-reload"
+          className="button-reload shadow"
           onClick={() => sendReloadToParent()}
         >
           <TbReload size={25} className="icon-reload text-blue-600" />
