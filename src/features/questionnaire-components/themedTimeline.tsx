@@ -1,6 +1,7 @@
 import "./questionnaire.css";
 import React, { useState } from "react";
 import { FaAngleDown, FaCheck } from "react-icons/fa";
+import { TbReload } from "react-icons/tb";
 
 interface ThemedTimelineProps {
   title: string;
@@ -34,10 +35,23 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({
     onSendData(idList);
   };
 
+  const sendReloadToParent = () => {
+    onSendData([]);
+  };
+
   return (
     <div className="themed-timeline flex flex-col h-full px-4 py-8 bg-blue-50 rounded-xl">
       {/* Title */}
-      <div className="text-2xl font-semibold mb-6">{title}</div>
+      <div className="flex justify-between items-center mb-4">
+        <div className="text-2xl font-semibold">{title}</div>
+        <button
+          type="button"
+          className="button-reload"
+          onClick={() => sendReloadToParent()}
+        >
+          <TbReload size={25} className="icon-reload text-blue-600" />
+        </button>
+      </div>
       {/* Timeline Steps */}
       <div className="relative overflow-y-auto themed-timeline-scrollbar">
         {options.map((option, index) => (
@@ -78,9 +92,11 @@ const ThemedTimeline: React.FC<ThemedTimelineProps> = ({
                         onClick={() => sendQuestionIdsToParent(subCategory.ids)}
                         className="text-left text-sm text-blue-500 mr-1"
                       >
-                         • {subCategory.label}
+                        • {subCategory.label}
                       </button>
-                      {subCategory.ids.every((id) => id in answers) && <FaCheck className="w-3 h-3 text-green-500 shrink-0" />}
+                      {subCategory.ids.every((id) => id in answers) && (
+                        <FaCheck className="w-3 h-3 text-green-500 shrink-0" />
+                      )}
                     </div>
                   ))}
               </div>

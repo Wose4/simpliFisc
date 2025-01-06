@@ -51,12 +51,22 @@ const Questionnaire: React.FC = () => {
     }
   };
 
+  // function handling data from timeline component
   const handleChildData = (data: string[]) => {
     if (data.length > 0) {
       const index = questions.findIndex((question) => question.id === data[0]);
       setCurrentQuestion(index);
       setError("");
       setAnswer("");
+    }
+    // reload case by receiving empty list
+    else {
+      setCurrentQuestion(0);
+      setError("");
+      setAnswer("");
+      setAnswers({});
+      setAllQuestionsAnswered(false);
+      setDataSent(false);
     }
   };
 
